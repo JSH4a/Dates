@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MY APP</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+</head>
+
+<body>
+    <div class="info-bubble">
+        <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
+            <input name="input-title" type="text" placeholder="Title">
+            <textarea name="input-desc" type="text" placeholder="Description"></textarea>
+            <div class="image-upload">
+                <label for="fileInput">
+                    <img class="btn-upload" src="../static/images/upload.png">
+                </label>
+            </div>
+            <input type="file" name="pic" id="fileInput">
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+</body>
+
+</html>
