@@ -1,0 +1,112 @@
+.dashboard-container {
+    margin: auto;
+    height: 100%;
+    display: flex;
+    width: fit-content;
+    /* Set display property to flex */
+}
+
+.map-container {
+    padding: 20px;
+    flex: 80%;
+    display: inline-block;
+    /* Set flex property to 1 to allow it to grow and take up remaining space */
+}
+
+.friends {
+    flex: 20%;
+    /* Set flex property to 1 to allow it to grow and take up remaining space */
+}
+
+.friends-list {
+    /* Add styles for the friends list container */
+    list-style-type: none;
+    /* Remove default list styles */
+    padding: 0;
+    /* Remove padding */
+    display: inline-block;
+    /* Divide available space equally */
+}
+
+.friend {
+    /* Add styles for each friend in the list */
+    display: flex;
+    /* Use flexbox for layout */
+    align-items: center;
+    /* Vertically center friend elements */
+    padding: 10px;
+    /* Add padding for spacing */
+    border-bottom: 1px solid #ccc;
+    /* Add border bottom for separating friends */
+}
+
+.profile-picture {
+    /* Add styles for the profile picture container */
+    width: 40px;
+    /* Set width of profile picture container */
+    height: 40px;
+    /* Set height of profile picture container */
+    border-radius: 50%;
+    /* Add border radius for circular shape */
+    overflow: hidden;
+    /* Hide overflow to contain profile picture */
+}
+
+.profile-picture img {
+    /* Add styles for the profile picture */
+    width: 100%;
+    /* Set width to 100% to fill the container */
+    height: 100%;
+    /* Set height to 100% to fill the container */
+    object-fit: cover;
+    /* Maintain aspect ratio and cover the container */
+}
+
+.friend-details {
+    /* Add styles for the friend details container */
+    flex-grow: 1;
+    /* Allow friend details container to grow and fill remaining space */
+    margin-left: 10px;
+    /* Add margin to the left for spacing */
+}
+
+.friend-name {
+    /* Add styles for the friend name element */
+    font-weight: bold;
+    /* Set font weight to bold */
+    flex-grow: 1;
+    /* Allow friend name to grow and fill remaining space */
+}
+
+.toggle-switch {
+    /* Add styles for the toggle switch container */
+}
+
+.toggle-switch input {
+    /* Add styles for the toggle switch input element */
+    display: none;
+    /* Hide the input element */
+}
+
+.toggle-slider {
+    /* Add styles for the toggle slider */
+    display: block;
+    width: 40px;
+    /* Set width of toggle slider */
+    height: 20px;
+    /* Set height of toggle slider */
+    background-color: #ccc;
+    /* Set background color of toggle slider */
+    border-radius: 10px;
+    /* Add border radius for rounded shape */
+    position: relative;
+    /* Set position to relative for precise positioning */
+    margin-left: 10px;
+    /* Add margin to the left for spacing */
+}
+
+.toggle-slider:before {
+    /* Add styles for the toggle slider's handle */
+    content: "";
+    display: block;
+}
