@@ -1,47 +1,34 @@
+'''
+This Python file contains the routing logic for the Flask web application. 
+
+File is split into the main routing and routing to do with authetication lower down.
+
+Note: This files imports from db.py to write to the database
+
+Author: Joshua Hitchon
+Date: April 9, 2023
+'''
+
+# flask imports
 from flask import Blueprint, render_template, request, Response, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
-from werkzeug.utils import secure_filename
 
+# custom imports
 from .models import Img, Marker, User, LoginForm, RegisterForm
-from .db import db, bcrypt, login_manager
+from .db import db
+from .bcrypt import bcrypt
+from .login_manager import login_manager
 
+# Register blueprints - note they are split for future modularity
 main = Blueprint('main', __name__)
+auth = Blueprint('auth', __name__)
 
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+# Main website routes
 
 
 @main.route('/')
 def index():
     return render_template('base.html')
-
-
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user:
-            if bcrypt.check_password_hash(user.password, form.password.data):
-                login_user(user)
-                return redirect(url_for('main.dashboard'))
-    return render_template('login.html', form=form)
-
-
-@main.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('main.login'))
-
-    return render_template('register.html', form=form)
 
 
 @main.route('/dashboard')
@@ -91,10 +78,34 @@ def upload():
     return render_template('db.html', img=img.img)
 
 
-@main.route('/<int:id>')
-def get_img(id):
-    img = Img.query.filter_by(id=id).first()
-    if not img:
-        return 'Img Not Found!', 404
+# authentication routes
 
-    return Response(img.img, mimetype=img.mimetype)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('main.dashboard'))
+    return render_template('login.html', form=form)
+
+
+@main.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        new_user = User(username=form.username.data, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('main.login'))
+
+    return render_template('register.html', form=form)
