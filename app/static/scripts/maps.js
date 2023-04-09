@@ -66,7 +66,23 @@ function addInfoBubble(map) {
         ui.addBubble(bubble);
     }, false);
 
-    addMarkerToGroup(globalGroup, { lat: 51.380741, lng: -2.360147 }, "<h1>Test</h1");
+    addMarkerToGroup(globalGroup, { lat: 51.380741, lng: -2.360147 },
+        `
+        <div class="info-bubble">
+        <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
+            <input name="input-title" type="text" placeholder="Title">
+            <textarea name="input-desc" type="text" placeholder="Description"></textarea>
+            <div class="image-upload">
+                <label for="fileInput">
+                    <img class="btn-upload" src="../static/images/upload.png">
+                </label>
+            </div>
+            <input type="file" name="pic" id="fileInput">
+            <input type="submit" value="Save">
+        </form>
+    </div>
+        `
+    );
 }
 
 /**
@@ -133,7 +149,23 @@ function addContextMenus(map) {
  * @param {H.geo.Point} coord Circle center coordinates
  */
 function newMarker(coord) {
-    addMarkerToGroup(globalGroup, coord, "<input></input");
+    addMarkerToGroup(globalGroup, coord,
+        `
+        <div class="info-bubble">
+        <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
+            <input name="input-title" type="text" placeholder="Title">
+            <textarea name="input-desc" type="text" placeholder="Description"></textarea>
+            <div class="image-upload">
+                <label for="fileInput">
+                    <img class="btn-upload" src="../static/images/upload.png">
+                </label>
+            </div>
+            <input type="file" name="pic" id="fileInput">
+            <input type="submit" value="Save">
+        </form>
+    </div>
+        `
+    );
 }
 
 /**
