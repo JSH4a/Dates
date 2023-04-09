@@ -10,6 +10,7 @@ def create_app():
     from .routes import main
     app.register_blueprint(main)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+    app.config["SECRET_KEY"] = "supersecret"
 
     db_init(app)
 
