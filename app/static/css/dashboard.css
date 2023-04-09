@@ -125,7 +125,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 400px;
+    max-width: 300px;
+    min-width: 150px;
+    min-height: auto;
     padding: 20px;
     background-color: #f7d7e8;
     /* Pinkish background color */
@@ -148,7 +150,7 @@
 .info-bubble input[type="submit"] {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: -25px;
     background-color: #ff70a0;
     /* Pinkish button color */
     color: #fff;
@@ -176,12 +178,9 @@
 }
 
 .btn-upload {
-    width: 100px;
     /* Set the width and height of the image */
-    height: 100px;
-    width: 100px;
-    /* Set the width and height of the image */
-    height: 100px;
+    height: 50px;
+    width: 50px;
     background-size: cover;
     cursor: pointer;
     border: none;
