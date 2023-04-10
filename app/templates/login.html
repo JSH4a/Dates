@@ -5,20 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/landing.css">
     <title>Login</title>
 </head>
 
 <body>
-    <h1>Login Page</h1>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
 
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.username }}
-        {{ form.password }}
-        {{ form.submit }}
-    </form>
+    <div class="form-container fade-in">
+        <div class="welcome-text">Continuue</div>
+        <div class="small-text">Please login to continue your journey</div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+            {{ form.password }}
+            {{ form.submit }}
+        </form>
 
-    <a href="{{ url_for('main.register') }}">Don't have an account? Sign Up</a>
+        <a href="{{ url_for('main.register') }}">Don't have an account? Sign Up</a>
+    </div>
 </body>
 
 </html>

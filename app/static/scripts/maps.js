@@ -209,7 +209,7 @@ var platform = new H.service.Platform({
 
 var defaultLayers = platform.createDefaultLayers();
 
-var map = new H.Map(document.getElementById('map-preview'), defaultLayers.vector.normal.map, {
+var map = new H.Map(document.getElementById('map-container'), defaultLayers.vector.normal.map, {
     // Barcelona location
     center: new H.geo.Point(51.380741, -2.360147),
     zoom: 14,

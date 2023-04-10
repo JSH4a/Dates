@@ -1,147 +1,70 @@
-/* base.css */
-/* Center the title vertically and horizontally */
-body {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0 auto;
+:root {
+    --blue: #6e44ff;
+    --indigo: #b892ff;
+    --lavendar: #ffcbe6;
+    --pink: #ff90b3;
+    --coral: #ef7a85;
+
+    --logo-color: #ef7a85;
+    --background: #b892ff;
+    --buttons: var(--pink);
+    --buttons-hover: var(--indigo);
+    --font: var(--lavendar)
 }
 
-/* Remove underline from anchor elements */
-a {
-    text-decoration: none;
+/* Google chrome */
+@-webkit-keyframes svg-text-anim {
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+
+    60% {
+        stroke-dashoffset: 0;
+        fill: var(--logo-color);
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill: var(--logo-color);
+    }
+
 }
 
-.hidden {
-    visibility: hidden;
-    display: none;
+/* Most browsers */
+@keyframes svg-text-anim {
+    40% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+
+    60% {
+        stroke-dashoffset: 0;
+        fill: var(--logo-color);
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill: var(--logo-color);
+    }
+
 }
 
-/* Style for the title */
-.title {
-    text-align: center;
-    margin-top: 50px;
-    /* Add margin from the top */
+#title-svg {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.fade-in {
     opacity: 0;
-    animation: fade-in 2s ease-in-out forwards;
+    animation: fadeIn 2s ease-in-out forwards;
 }
 
-.small-text {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.big-text {
-    font-size: 72px;
-    font-weight: bold;
-    font-family: 'Lucida Handwriting', cursive;
-    color: #FF69B4;
-    /* Pink color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Add a subtle text shadow */
-}
-
-/* Animation to fade in the title */
-@keyframes fade-in {
-    from {
+@keyframes fadeIn {
+    0% {
         opacity: 0;
     }
 
-    to {
+    100% {
         opacity: 1;
     }
-}
-
-/* Container for the call-to-action (CTA) */
-.cta-container {
-    margin-top: 100px;
-    /* Add some space below the title */
-}
-
-/* Style for the CTA text */
-.cta-text {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Container for the CTA buttons */
-.cta-buttons {
-    margin-top: 20px;
-    /* Add some space between the text and buttons */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Style for the CTA buttons */
-.cta-button {
-    width: 150px;
-    /* Set a fixed width for the buttons */
-    text-align: center;
-    padding: 10px 20px;
-    margin-right: 10px;
-    /* Add margin between the buttons */
-    background-color: #f3c0cc;
-    color: #ffffff;
-    font-size: 18px;
-    font-family: cursive;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover effect for the CTA buttons */
-.cta-button:hover {
-    background-color: #FF1493;
-    /* Darker pink color on hover */
-}
-
-/* Style for the login form */
-.login-container {
-    opacity: 0;
-    animation: fade-in 2s ease-in-out forwards;
-}
-
-.login-title {
-    text-align: center;
-    font-size: 24px;
-    font-family: cursive;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.login-input {
-    width: 200px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.login-button {
-    width: 200px;
-    padding: 10px;
-    background-color: #f3c0cc;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-family: cursive;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #e39fad;
-}
-
-/* CSS for "or login" text */
-.go-back {
-    margin-top: 10px;
-    text-align: center;
-    font-family: cursive;
-    cursor: pointer;
 }
