@@ -13,6 +13,8 @@ Date: April 9, 2023
 from flask import Blueprint, render_template, request, Response, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.utils import secure_filename
+from flask_socketio import SocketIO, emit
+from app import socketio
 
 # custom imports
 from .models import Img, Marker, User, LoginForm, RegisterForm
@@ -25,6 +27,11 @@ main = Blueprint('main', __name__)
 auth = Blueprint('auth', __name__)
 
 # Main website routes
+
+
+@socketio.on('my_event')
+def handler(data):
+    print("recieved event")
 
 
 @main.route('/')

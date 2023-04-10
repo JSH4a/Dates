@@ -1,0 +1,155 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#top-title {
+    width: 50%;
+    /* You can adjust the width to your desired size */
+    margin: 0 auto;
+    /* Center the SVG horizontally */
+    display: block;
+    /* Make the SVG a block element */
+}
+
+.panel {
+    background-color: var(--buttons);
+    color: var(--font);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 60%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+#left-panel {
+    width: 20%;
+    height: 91%;
+    margin-top: 2%;
+    margin-left: -43px;
+    transition: width 0.5s ease-in-out;
+}
+
+
+#left-panel:hover {
+    width: 30%;
+    /* Set your maximum width here */
+}
+
+
+/* style for map */
+
+#map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+/* Center the info-bubble div */
+.info-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Style the form inputs */
+.info-bubble form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f7d7e8;
+    /* Pinkish background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Add a subtle box shadow */
+}
+
+.info-bubble input[type="text"],
+.info-bubble input[type="file"],
+.info-bubble textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.info-bubble input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ff70a0;
+    /* Pinkish button color */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.info-bubble input[type="submit"]:hover {
+    background-color: #e85192;
+    /* Hover color for the button */
+}
+
+/* Style the placeholders in the input fields */
+.info-bubble input[type="text"],
+.info-bubble textarea::placeholder {
+    color: #888;
+}
+
+#fileInput {
+    visibility: hidden;
+    width: 0;
+    height: 0
+}
+
+.btn-upload {
+    width: 100px;
+    /* Set the width and height of the image */
+    height: 100px;
+    width: 100px;
+    /* Set the width and height of the image */
+    height: 100px;
+    background-size: cover;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.H_ib_body {
+    background: rgba(255, 255, 255, 0);
+    position: absolute;
+    bottom: .5em;
+    padding: 0;
+    right: 0px;
+    border-radius: 5px;
+    margin-right: -3em;
+    box-shadow: 0px 0 0px 0 rgba(15, 22, 33, 0.6);
+    margin-bottom: 0.5em;
+}
+
+.H_icon {
+    border-radius: 50%;
+    background-color: #ff69b4;
+    margin: 16px 15px 20px 16px;
+}

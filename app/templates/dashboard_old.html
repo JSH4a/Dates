@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+
+    <title>Odyssey - Welcome</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/map.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+</head>
+
+<body>
+    <div class="title">
+        <div class="small-text">Welcome to your</div>
+        <div class="big-text">Odyssey</div>
+    </div>
+
+    <div class="dashboard-container">
+
+        <div class="map-container">
+            <div id="map-preview" class="frame"></div>
+
+        </div>
+
+        <div class="friends">
+            <div class="big-text">Friends</div>
+            <ul class="friends-list">
+                <li class="friend">
+                    <div class="profile-picture">
+                        <img src="../static/images/person.png" alt="Friend 1">
+                    </div>
+                    <div class="friend-details">
+                        <div class="friend-name">Friend 1</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </li>
+
+                <li class="friend">
+                    <div class="profile-picture">
+                        <img src="../static/images/person.png" alt="Friend 2">
+                    </div>
+                    <div class="friend-details">
+                        <div class="friend-name">Friend 2</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </li>
+                <!-- Add more friends as needed -->
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="../static/scripts/maps.js"></script>
+
+</body>
+
+</html>

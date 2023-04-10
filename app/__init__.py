@@ -16,11 +16,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_socketio import SocketIO
 
 # custom imports
 from .db import db_init
 from .bcrypt import bcrypt_init
 from .login_manager import login_manager_init
+
+socketio = SocketIO()
 
 
 def create_app():
@@ -51,5 +54,8 @@ def create_app():
 
     # Initialize login manager
     login_manager_init(app)
+
+    # init socket
+    socketio.init_app(app)
 
     return app
