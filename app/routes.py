@@ -12,6 +12,7 @@ Date: April 9, 2023
 # flask imports
 from flask import Blueprint, render_template, request, Response, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
+from werkzeug.utils import secure_filename
 
 # custom imports
 from .models import Img, Marker, User, LoginForm, RegisterForm
@@ -34,7 +35,7 @@ def index():
 @main.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('main.html')
 
 
 @main.route('/logout', methods=['GET', 'POST'])
@@ -75,7 +76,7 @@ def upload():
     db.session.add(marker)
     db.session.commit()
 
-    return render_template('db.html', img=img.img)
+    return
 
 
 # authentication routes
