@@ -35,7 +35,7 @@ a {
 .big-text {
     font-size: 72px;
     font-weight: bold;
-    font-family: 'Lucida Handwriting', cursive;
+    font-family: 'Sofia', cursive;
     color: #FF69B4;
     /* Pink color */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);

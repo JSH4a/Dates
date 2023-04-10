@@ -5,20 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/landing.css">
     <title>Register</title>
 </head>
 
 <body>
-    <h1>Register Page</h1>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
 
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.username }}
-        {{ form.password }}
-        {{ form.submit }}
-    </form>
+    <div class="form-container fade-in">
+        <div class="welcome-text">Embark</div>
+        <div class="small-text">Please sign-up to begin your journey</div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+            {{ form.password }}
+            {{ form.submit }}
+        </form>
 
-    <a href="{{ url_for('main.login') }}">Already have an account? Log In</a>
+        <a href="{{ url_for('main.login') }}">Already have an account? Log In</a>
+    </div>
 </body>
 
 </html>
