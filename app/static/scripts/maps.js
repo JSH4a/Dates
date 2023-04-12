@@ -43,6 +43,22 @@ function addMarkerToGroup(group, coordinate, html) {
             target.setGeometry(map.screenToGeo(pointer.viewportX - target['offset'].x, pointer.viewportY - target['offset'].y));
         }
     }, false);
+
+    marker.addEventListener('contextmenu', function (e) {
+        // Add another menu item,
+        // that will be visible only when clicking on this object.
+        //
+        // New item doesn't replace items, which are added by the map.
+        // So we may want to add a separator to between them.
+        e.items.push(
+            new H.util.ContextItem({
+                label: 'Enable move',
+                callback: function () {
+                    map.removeObject(circle);
+                }
+            })
+        );
+    });
 }
 
 function saveMarker(element) {
@@ -64,7 +80,7 @@ function addInfoBubble(map) {
     map.addObject(globalGroup);
 
     // add 'tap' event listener, that opens info bubble, to the group
-    globalGroup.addEventListener('tap', function (evt) {
+    globalGroup.addEventListener('click', function (evt) {
         // event target is the marker itself, group is a parent event target
         // for all objects that it contains
         var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
@@ -74,24 +90,6 @@ function addInfoBubble(map) {
         // show info bubble
         ui.addBubble(bubble);
     }, false);
-
-    addMarkerToGroup(globalGroup, { lat: 51.380741, lng: -2.360147 },
-        `
-        <div class="info-bubble">
-        <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
-            <input name="input-title" type="text" placeholder="Title">
-            <textarea name="input-desc" type="text" placeholder="Description"></textarea>
-            <div class="image-upload">
-                <label for="fileInput">
-                    <img class="btn-upload" src="../static/images/upload.png">
-                </label>
-            </div>
-            <input type="file" name="pic" id="fileInput">
-            <input id="submit-to-socket" type="submit" value="Save">
-        </form>
-    </div>
-        `
-    );
 }
 
 /**
@@ -151,38 +149,29 @@ function addContextMenus(map) {
     });
 }
 
-/**
- * Adds a marker which has a context menu item to remove itself.
- *
- * @this H.Map
- * @param {H.geo.Point} coord Circle center coordinates
- */
-function newMarker(coord) {
+function dragMarker(element) {
+    console.log(element.parentNode);
+}
+
+function newMarker(coord, title = "", description = "") {
     addMarkerToGroup(globalGroup, coord,
         `
         <div class="info-bubble">
         <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
-            <input name="input-title" type="text" placeholder="Title">
-            <textarea name="input-desc" type="text" placeholder="Description"></textarea>
+            <input name="input-title" type="text" placeholder="Title" value="`+ title + `">
+            <textarea name="input-desc" type="text" placeholder="Description">`+ description + `</textarea>
+            <input name="latitude" type="float" placeholder="latitude" value="`+ coord.lat + `">
+            <input name="longitude" type="float" placeholder="longitude" value="`+ coord.lng + `">
             <div class="image-upload">
                 <label for="fileInput">
-                    <img class="btn-upload" src="../static/images/upload.png">
+                    <img class="btn-upload" src="../static/images/test.jpeg">
                 </label>
             </div>
             <input type="file" name="pic" id="fileInput">
-            <input type="submit" value="Save">
+            <input type="submit" value="Save Changes">
         </form>
-        <button id="click-me">Test me</button>
     </div>
-        `
-    );
-}
-
-function importMarker(title, description, lat, long) {
-    addMarkerToGroup(globalGroup, { lat: 51.380741, lng: -2.360147 },
-
-        '<div>' + title + '</div>' +
-        '</div><img width=200 height=200 src="../static/images/test.jpeg"></img></div>'
+    `
 
     );
 
@@ -274,7 +263,7 @@ $(document).ready(function () {
         console.log(data);
         for (const [id, marker] of Object.entries(data)) {
             console.log()
-            importMarker(marker.title, marker.description, marker.lat, marker.long);
+            newMarker(new H.geo.Point(marker.lat, marker.long), marker.title, marker.description);
         }
 
     });

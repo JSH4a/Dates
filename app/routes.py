@@ -64,23 +64,21 @@ def upload():
         pic = request.files['pic']
         lat = 51.380741
         long = -2.360147
-        print("REQUEST:", request.form.get('input-title'))
+
         title = request.form.get('input-title')
         desc = request.form.get('input-desc')
 
-        if not pic:
-            return 'No pic uploaded!', 400
+        if pic:
+            filename = secure_filename(pic.filename)
+            mimetype = pic.mimetype
+            if not filename or not mimetype:
+                return 'Bad upload!', 400
 
-        filename = secure_filename(pic.filename)
-        mimetype = pic.mimetype
-        if not filename or not mimetype:
-            return 'Bad upload!', 400
+            img = Img(img=pic.read(), name=filename, mimetype=mimetype)
+            db.session.add(img)
+            db.session.commit()
 
-        img = Img(img=pic.read(), name=filename, mimetype=mimetype)
-        db.session.add(img)
-        db.session.commit()
-
-        marker = Marker(ownerID=1, lat=lat, long=long, imgID=img.id,
+        marker = Marker(ownerID=1, lat=lat, long=long, imgID=(img.id if pic else None),
                         title=title, description=desc)
         db.session.add(marker)
         db.session.commit()

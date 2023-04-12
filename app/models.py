@@ -105,7 +105,7 @@ class Marker(db.Model):
     ownerID = db.Column(db.Integer, nullable=False)
     lat = db.Column(db.Float(5), nullable=False)
     long = db.Column(db.Float(5), nullable=False)
-    imgID = db.Column(db.Integer, nullable=False)
+    imgID = db.Column(db.Integer, nullable=True)
     title = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
 
