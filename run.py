@@ -1,7 +1,9 @@
 from app import create_app
-from flask_socketio import SocketIO
+import eventlet
+from eventlet import wsgi
 
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    wsgi.server(eventlet.listen(('', 5000)), app)
+    # app.run(debug=True)

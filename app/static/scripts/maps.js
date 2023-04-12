@@ -45,6 +45,15 @@ function addMarkerToGroup(group, coordinate, html) {
     }, false);
 }
 
+function saveMarker(element) {
+    console.log("SENDING")
+    var socket = io.connect("http://127.0.0.1:5000/");
+
+    console.log(element)
+
+    socket.emit('my_event', "hello");
+}
+
 /**
  * Add two markers showing the position of Liverpool and Manchester City football clubs.
  * Clicking on a marker opens an infobubble which holds HTML content related to the marker.
@@ -78,7 +87,7 @@ function addInfoBubble(map) {
                 </label>
             </div>
             <input type="file" name="pic" id="fileInput">
-            <input type="submit" value="Save">
+            <input id="submit-to-socket" type="submit" value="Save">
         </form>
     </div>
         `
@@ -163,9 +172,20 @@ function newMarker(coord) {
             <input type="file" name="pic" id="fileInput">
             <input type="submit" value="Save">
         </form>
+        <button id="click-me">Test me</button>
     </div>
         `
     );
+}
+
+function importMarker(title, description, lat, long) {
+    addMarkerToGroup(globalGroup, { lat: 51.380741, lng: -2.360147 },
+
+        '<div>' + title + '</div>' +
+        '</div><img width=200 height=200 src="../static/images/test.jpeg"></img></div>'
+
+    );
+
 }
 
 /**
@@ -229,3 +249,34 @@ var globalGroup = new H.map.Group();
 // add bubble
 addInfoBubble(map);
 addContextMenus(map);
+
+//#00b7ff
+
+
+$(document).ready(function () {
+    var socket = io.connect("http://127.0.0.1:5000/");
+
+    // socket event listeners
+    $('#test-button').on('click', function () {
+        console.log("Hi")
+        socket.emit('my_event', "hello");
+    });
+
+    socket.on('connect', function () {
+        console.log('joined');
+        socket.emit('joined');
+    });
+
+
+
+    socket.on('receiveMarkers', function (data) {
+        console.log("Received")
+        console.log(data);
+        for (const [id, marker] of Object.entries(data)) {
+            console.log()
+            importMarker(marker.title, marker.description, marker.lat, marker.long);
+        }
+
+    });
+
+});

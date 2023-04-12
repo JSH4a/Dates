@@ -102,8 +102,21 @@ class Marker(db.Model):
     - description (str): Description of the marker.
     """
     id = db.Column(db.Integer, primary_key=True)
+    ownerID = db.Column(db.Integer, nullable=False)
     lat = db.Column(db.Float(5), nullable=False)
     long = db.Column(db.Float(5), nullable=False)
     imgID = db.Column(db.Integer, nullable=False)
     title = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
+
+    def serialize(self):
+        """Return object data in easily serializable format"""
+        return {
+            'ownerID': self.ownerID,
+            'lat': self.lat,
+            'long': self.long,
+            'imgID': self.imgID,
+            'title': self.title,
+            'description': self.description
+
+        }
