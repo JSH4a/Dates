@@ -6,7 +6,7 @@
  */
 function addMarkerToGroup(group, coordinate, html) {
     var marker = new H.map.Marker(coordinate, { volatility: true });
-    marker.draggable = true;
+    marker.draggable = false;
 
     // add custom data to the marker
     marker.setData(html);
@@ -54,7 +54,7 @@ function addMarkerToGroup(group, coordinate, html) {
             new H.util.ContextItem({
                 label: 'Enable move',
                 callback: function () {
-                    map.removeObject(circle);
+                    e.target.draggable = !(e.target.draggable);
                 }
             })
         );
@@ -80,7 +80,7 @@ function addInfoBubble(map) {
     map.addObject(globalGroup);
 
     // add 'tap' event listener, that opens info bubble, to the group
-    globalGroup.addEventListener('click', function (evt) {
+    globalGroup.addEventListener('tap', function (evt) {
         // event target is the marker itself, group is a parent event target
         // for all objects that it contains
         var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
@@ -140,7 +140,7 @@ function addContextMenus(map) {
             }),
             // It is possible to add a seperator between items in order to logically group them.
             H.util.ContextItem.SEPARATOR,
-            // This menu item will add a new circle to the map
+            // This menu item will add a new marker to the map
             new H.util.ContextItem({
                 label: 'New memory',
                 callback: newMarker.bind(map, coord)
@@ -174,7 +174,7 @@ function newMarker(coord, title = "", description = "") {
     `
 
     );
-
+    // create event listener here?
 }
 
 /**
